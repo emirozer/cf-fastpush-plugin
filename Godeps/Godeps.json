@@ -22,9 +22,18 @@
 			"Rev": "c53c86fd9621d83f5d6d33a8e41499c4c9df95ce"
 		},
 		{
+			"ImportPath": "github.com/moul/http2curl",
+			"Rev": "1c29be06762e43e04dd954a01c66991104ce4374"
+		},
+		{
 			"ImportPath": "github.com/nicksnyder/go-i18n/i18n",
 			"Comment": "v1.3.0-5-g37e5c2d",
 			"Rev": "37e5c2de3e03e4b82693e3fcb4a6aa2cc4eb07e3"
+		},
+		{
+			"ImportPath": "github.com/parnurzeal/gorequest",
+			"Comment": "v0.2.13-3-g7fc1014",
+			"Rev": "7fc10144ab424d17acef4e55a984cf65d826bf02"
 		},
 		{
 			"ImportPath": "github.com/simonleung8/flags",
@@ -33,6 +42,10 @@
 		{
 			"ImportPath": "golang.org/x/crypto/ssh/terminal",
 			"Rev": "beef0f4390813b96e8e68fd78570396d0f4751fc"
+		},
+		{
+			"ImportPath": "golang.org/x/net/publicsuffix",
+			"Rev": "62ac18b461605b4be188bbc7300e9aa2bc836cd4"
 		},
 		{
 			"ImportPath": "gopkg.in/yaml.v2",
