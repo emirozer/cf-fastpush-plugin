@@ -5,14 +5,15 @@ import (
 	"os"
 	"regexp"
 
-	"github.com/parnurzeal/gorequest"
-	"github.com/xiwenc/cf-fastpush-controller/lib"
-	"github.com/emirozer/cf-fastpush-plugin/Godeps/_workspace/src/github.com/cloudfoundry/cli/cf/terminal"
-	"github.com/emirozer/cf-fastpush-plugin/Godeps/_workspace/src/github.com/cloudfoundry/cli/plugin"
-	"github.com/emirozer/cf-fastpush-plugin/Godeps/_workspace/src/github.com/simonleung8/flags"
-	"strings"
 	"encoding/json"
 	"io/ioutil"
+	"strings"
+
+	"github.com/cloudfoundry/cli/cf/terminal"
+	"github.com/cloudfoundry/cli/plugin"
+	"github.com/emirozer/cf-fastpush-plugin/lib"
+	"github.com/parnurzeal/gorequest"
+	"github.com/simonleung8/flags"
 )
 
 /*
@@ -52,7 +53,6 @@ func (c *FastPushPlugin) Run(cliConnection plugin.CliConnection, args []string) 
 	if cliLogged == false {
 		panic("cannot perform fast-push without being logged in to CF")
 	}
-
 
 	if args[0] == "fast-push" || args[0] == "fp" {
 		if len(args) == 1 {
@@ -202,9 +202,8 @@ func (c *FastPushPlugin) GetApiEndpoint(cliConnection plugin.CliConnection, appN
 		c.ui.Failed(err.Error())
 	}
 
-
 	for _, line := range results {
-		match, _ :=regexp.MatchString("^urls:.*", line)
+		match, _ := regexp.MatchString("^urls:.*", line)
 		if match {
 			parts := strings.Fields(line)
 			if len(parts) > 1 {
