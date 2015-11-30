@@ -101,11 +101,6 @@ func (c *FastPushPlugin) FastPush(cliConnection plugin.CliConnection, appName st
 	// Please check what GetApp returns here
 	// https://github.com/cloudfoundry/cli/blob/master/plugin/models/get_app.go
 
-	if dryRun {
-		// NEED TO HANDLE DRY RUN
-		c.ui.Warn("warning: No changes will be applied, this is a dry run !!")
-	}
-
 	apiEndpoint := c.GetApiEndpoint(cliConnection, appName)
 	request := gorequest.New()
 	_, body, err := request.Get(apiEndpoint + "/files").End()
@@ -118,6 +113,13 @@ func (c *FastPushPlugin) FastPush(cliConnection plugin.CliConnection, appName st
 	localFiles := lib.ListFiles()
 
 	filesToUpload := c.ComputeFilesToUpload(localFiles, remoteFiles)
+
+	if dryRun {
+		c.ui.Warn("warning: No changes will be applied, this is a dry run !!")
+		c.ui.Warn("dry run: files to upload will be:")
+		fmt.Println(filesToUpload)
+		return
+	}
 	payload, _ := json.Marshal(filesToUpload)
 	_, body, err = request.Put(apiEndpoint + "/files").Send(string(payload)).End()
 	if err != nil {
